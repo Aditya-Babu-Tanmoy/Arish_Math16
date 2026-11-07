@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Math MCQ Practice Test (89 Questions)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{--primary:#4F46E5;--primary-hover:#4338CA;--bg:#F3F4F6;--card-bg:#FFFFFF;--text-main:#1F2937;--text-muted:#6B7280;--success:#10B981;--danger:#EF4444;--warning:#F59E0B}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+body{background-color:var(--bg);color:var(--text-main);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;padding-top:max(20px,env(safe-area-inset-top,0px));padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
+.container{background-color:var(--card-bg);width:100%;max-width:800px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.05);overflow:hidden;position:relative}
+#start-screen{padding:40px;text-align:center}
+#start-screen h1{color:var(--primary);margin-bottom:15px}
+#start-screen p{color:var(--text-muted);margin-bottom:30px;line-height:1.6}
+.btn{background-color:var(--primary);color:white;border:none;padding:12px 30px;font-size:16px;font-weight:500;border-radius:8px;cursor:pointer;transition:background-color .3s ease}
+.btn:hover{background-color:var(--primary-hover)}
+.btn:disabled{background-color:#D1D5DB;cursor:not-allowed}
+#quiz-screen{padding:30px;display:none}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #E5E7EB;flex-wrap:wrap;gap:10px}
+.progress{font-weight:500;color:var(--text-muted)}
+.timer{font-weight:600;font-size:18px;color:var(--primary);background:#EEF2FF;padding:5px 15px;border-radius:20px;display:flex;align-items:center;gap:8px}
+.timer.warning{color:var(--danger);background:#FEF2F2;animation:pulse 1s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.question-text{font-size:17px;font-weight:500;margin-bottom:25px;line-height:1.6;white-space:pre-wrap}
+.options-container{display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
+.option{background-color:#F9FAFB;border:2px solid #E5E7EB;padding:15px 20px;border-radius:10px;cursor:pointer;transition:all .2s ease;font-size:15px;display:flex;align-items:center;white-space:pre-wrap}
+.option:hover{border-color:#D1D5DB;background-color:#F3F4F6}
+.option.selected{border-color:var(--primary);background-color:#EEF2FF}
+#result-screen{padding:30px;display:none;max-height:90vh;overflow-y:auto}
+.score-card{text-align:center;margin-bottom:30px}
+.score-circle{width:120px;height:120px;border-radius:50%;background:var(--primary);color:white;display:flex;justify-content:center;align-items:center;font-size:28px;font-weight:bold;margin:0 auto 15px auto;box-shadow:0 5px 15px rgba(79,70,229,.3)}
+.review-section h3{margin-bottom:15px;color:var(--text-main);border-bottom:2px solid #E5E7EB;padding-bottom:10px}
+.review-item{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:20px;margin-bottom:15px}
+.review-question{font-weight:500;margin-bottom:10px;white-space:pre-wrap}
+.review-answer{font-size:14px;margin-bottom:5px}
+.review-answer.user-correct{color:var(--success);font-weight:500}
+.review-answer.user-wrong{color:var(--danger);font-weight:500}
+.review-answer.correct-ans{color:var(--primary);font-weight:500}
+.explanation{font-size:13px;color:var(--text-muted);background:#FFF;padding:12px;border-radius:6px;margin-top:10px;border-left:4px solid var(--primary);line-height:1.5}
+.hidden{display:none !important}
+.figure-box{display:flex;justify-content:center;margin:0 0 20px 0}
+.figure-box svg{max-width:100%;height:auto;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:8px}
+.fig-line{fill:none;stroke:#1F2937;stroke-width:1.6;stroke-linejoin:round}
+.fig-hid{fill:none;stroke:#6B7280;stroke-width:1.2;stroke-dasharray:4 3}
+.fig-diag{fill:none;stroke:#EF4444;stroke-width:1.8}
+.fig-dim{fill:none;stroke:#4F46E5;stroke-width:1.2}
+.fig-txt{font-size:13px;font-weight:600;fill:#1F2937;font-family:'Poppins',sans-serif}
+.fig-dimtxt{font-size:12px;font-weight:600;fill:#4F46E5;font-family:'Poppins',sans-serif}
+.summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:420px;margin:0 auto 20px auto;text-align:center}
+.summary div{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:10px;font-size:13px;color:var(--text-muted)}
+.summary b{display:block;font-size:18px;color:var(--text-main)}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="start-screen">
+<h1>Math Practice Test</h1>
+<p>Topic: Mensuration (Cubes, Cylinders, Rectangular Solids)<br>
+Total Questions: <strong>89</strong> &nbsp;|&nbsp; Total Marks: <strong>89</strong><br>(1 mark per question, no negative marking)<br><br>
+You will have <strong>45 seconds</strong> per question. <br>
+If time runs out, it will automatically move to the next question.</p>
+<button class="btn" onclick="startQuiz()">Start Test</button>
+</div>
+<div id="quiz-screen">
+<div class="header">
+<div class="progress" id="progress-text">Question 1 of 89</div>
+<div class="timer" id="timer-display">
+<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+<span id="time-text">45</span>s
+</div>
+</div>
+<div class="question-text" id="question-text"></div>
+<div class="figure-box" id="figure-box"></div>
+<div class="options-container" id="options-container"></div>
+<button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
+</div>
+<div id="result-screen">
+<div class="score-card">
+<div class="score-circle" id="score-display">0/89</div>
+<h2>Test Completed!</h2>
+<div class="summary" id="summary" style="margin-top:15px"></div>
+<p style="color: var(--text-muted); margin-bottom: 20px;">Here is your detailed review:</p>
+<button class="btn" onclick="location.reload()">Restart Test</button>
+</div>
+<div class="review-section" id="review-container"></div>
+</div>
+</div>
+<script>
+const quizData = [
+{ question: "1. Diagonal of a cube is 6√3 m. The volume will be —", options: ["36 cubic meters", "144 cubic meters", "216 cubic meters", "512 cubic meters"], correct: 2, explanation: "Diagonal = a√3. 6√3 = a√3 => a = 6. Volume = a³ = 6³ = 216." },
+{ question: "2. The area of the whole surface of a cube is 150 sq. m. What is the length of a diagonal of the surface in metre?", options: ["5", "5√2", "5√3", "125"], correct: 1, explanation: "Whole surface area = 6a² = 150 => a² = 25 => a = 5. Diagonal of surface = a√2 = 5√2." },
+{ question: "3. The height and the radius of the base of a right circular cylinder are equal. What will be the ratio of the area of the whole surface and the area of the curved surface?", options: ["3 : 1", "2 : 1", "1 : 1", "1 : 2"], correct: 1, explanation: "r = h. Whole surface = 2πr(r+h) = 2πr(2r) = 4πr². Curved surface = 2πrh = 2πr². Ratio = 4πr² : 2πr² = 2:1." },
+{ question: "4. The volume of a cube is 24√3 cm³. What is the length of the side of the cube?", options: ["2√3 cm", "3√3 cm", "6√3 cm", "8√3 cm"], correct: 0, explanation: "a³ = 24√3 = 8 × 3√3 = (2√3)³. So a = 2√3." },
+{ question: "5. How many planes are there in a cube?", options: ["2", "3", "4", "6"], correct: 3, explanation: "A cube has 6 faces/planes." },
+{ question: "6. If the length of side of a cube is 3 cm then what is the area of whole surface?", options: ["18 sq. cm", "27 sq. cm", "36 sq. cm", "54 sq. cm"], correct: 3, explanation: "Whole surface area = 6a² = 6(3)² = 6 × 9 = 54 sq. cm." },
+{ question: "7. The volume of a cube is 24√3 cubic cm. What is the length of its diagonal?", options: ["2√3 cm", "3√2 cm", "6 cm", "18 cm"], correct: 2, explanation: "Volume = a³ = 24√3 = (2√3)³ => a = 2√3. Diagonal = a√3 = 2√3 × √3 = 6 cm." },
+{ question: "8. If radius of base and height of a right circular cylinder are 5 cm and 6 cm respectively, then —\ni. area of the base = 25π square cm\nii. volume = 150π cubic cm\niii. area of curved surface = 60π square cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 3, explanation: "Base area = πr² = 25π ✓. Volume = πr²h = 25π × 6 = 150π ✓. Curved surface = 2πrh = 2π(5)(6) = 60π ✓. All three are correct." },
+{ question: "9. If a cube has edge of 3 cm, then —\ni. volume is 27 cubic cm\nii. length of diagonal is 3√3 cm\niii. area of whole surface is 54 square cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 3, explanation: "Volume = 3³ = 27. Diagonal = 3√3. TSA = 6(3²) = 54. All are correct." },
+{ question: "10. If radius of the base of a right circular cylinder is 5 cm and the height is 7 cm, then—\ni. area of the base = 25π square cm\nii. area of the curved surface = 70π square cm\niii. volume = 350π cubic cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 0, explanation: "Base = 25π (True). CSA = 2π(5)(7) = 70π (True). Volume = πr²h = 25π(7) = 175π. So iii is incorrect." },
+{ question: "11. If the height of a cylinder is 4 cm and diameter of the base is 4 cm then —\ni. area of the curved surface is 50.27 sq. cm\nii. area of the whole surface is 75.4 sq. cm\niii. volume is 201.06 cubic cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 0, explanation: "r=2, h=4. CSA = 2π(2)(4) = 50.27. TSA = 2π(2)(2+4) = 75.4. Volume = π(4)(4) = 50.27. (iii is incorrect)." },
+{ question: "12. [Situation based] In the diagram, radius of the base of the cylinder is 5 cm and height 20 cm. Which is the generator line in the above diagram?\n(See the figure below.)", options: ["AB", "CD", "BC", "AD"], correct: 0, explanation: "The generator line (height) of the cylinder is represented by AB or CD. The answer key marks 'a' (AB)." },
+{ question: "13. Of the cylindrical object in the above diagram—\ni. the area of the base is 78.54 cm²\nii. the area of the curved surface is 628.32 cm²\niii. volume is 1570.8 cm³\nWhich one is correct?", options: ["i", "i & ii", "ii & iii", "i, ii & iii"], correct: 3, explanation: "r=5, h=20. Base = 25π = 78.54. CSA = 2π(5)(20) = 628.32. Volume = π(25)(20) = 1570.8. All are correct." },
+{ question: "14. Diameter of the base is 12 cm and height is 8 cm of a cylinder. What is the area of the curve surface of the cylinder?", options: ["37.70 sq. cm", "113.09 sq. cm", "301.59 sq. cm", "904.78 sq. cm"], correct: 2, explanation: "r=6, h=8. CSA = 2πrh = 2π(6)(8) = 96π ≈ 301.59 sq. cm." },
+{ question: "15. What is the volume of the cylinder (r=6, h=8)?", options: ["113.09 cubic cm", "150.80 cubic cm", "452.38 cubic cm", "904.78 cubic cm"], correct: 3, explanation: "Volume = πr²h = π(6²)(8) = 288π ≈ 904.78 cubic cm." },
+{ question: "16. The length of the floor of a rectangular room is 2 meter more than its breadth and the perimeter of the floor is 20 meter. What is the length of the floor?", options: ["4 metre", "6 metre", "8 metre", "10 metre"], correct: 1, explanation: "Let breadth = x. Length = x+2. Perimeter = 2(x + x + 2) = 20 => 2x + 2 = 10 => x = 4. Length = 4+2 = 6m. (Note: the printed key shows (c) 8 metre, but the working gives 6 m = (b).)" },
+{ question: "17. If the diameter of base of a cylinder is equal to the perimeter of the rectangular floor, then what is the area of base of the cylinder?", options: ["10π sq. m", "20π sq. m", "100π sq. m", "400π sq. m"], correct: 2, explanation: "Perimeter of floor = 20m. Diameter = 20 => r = 10. Area of base = πr² = 100π." },
+{ question: "18. The inner and outer diameter of a iron pipe is 6 cm and 10 cm respectively and the height of pipe is 30 cm. What is the area of the outer curved surface of the pipe?", options: ["150π cm²", "300π cm²", "350π cm²", "600π cm²"], correct: 1, explanation: "Outer diameter = 10, so r = 5. Outer CSA = 2πrh = 2π(5)(30) = 300π cm²." },
+{ question: "19. Of the pipe—\ni. the thickness of iron is 2 cm\nii. the volume of the hollow part = 480π cm³\niii. area of the base is 25π cm²\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 1, explanation: "Inner radius = 3 cm, outer radius = 5 cm. i. Thickness = 5 − 3 = 2 cm ✓. ii. Hollow part volume = π(3²)(30) = 270π cm³, not 480π ✗. iii. Base area = π(5²) = 25π cm² ✓. So i & iii." },
+{ question: "20. (Given: height of a right circular cylinder = 8 cm, radius r = 5 cm.) If the length of diagonal of a cube is r√3, then what is the area of the whole surface of the cube?", options: ["20 cm²", "25 cm²", "125 cm²", "150 cm²"], correct: 3, explanation: "r = 5, so the diagonal is 5√3 = a√3 => a = 5. Whole surface = 6a² = 6 × 25 = 150 cm²." },
+{ question: "21. (Cylinder: height 8 cm, radius 5 cm.) In case of cylinder—\ni. area of the curved surface is 251.33 cm²\nii. the volume is 628.32 cm³\niii. area of the base is 201.06 cm²\nWhich one is correct?", options: ["i and ii", "i and iii", "ii and iii", "i, ii and iii"], correct: 0, explanation: "i. CSA = 2π(5)(8) = 80π ≈ 251.33 ✓. ii. Volume = π(5²)(8) = 200π ≈ 628.32 ✓. iii. Base area = π(5²) ≈ 78.54, not 201.06 ✗. So i and ii." },
+{ question: "22. If the volume of a cube is 64 cm³, then what is the length of the diagonal of a surface in cm?", options: ["4√2", "4√3", "8√2", "8√3"], correct: 0, explanation: "a³ = 64 => a = 4. Diagonal of surface = a√2 = 4√2." },
+{ question: "23. In any cube diagonal of any surface is 8√2 cm. then what is the volume of the cube?", options: ["412", "512", "624", "724"], correct: 1, explanation: "Surface diagonal = a√2 = 8√2 => a = 8. Volume = a³ = 512." },
+{ question: "24. If the area of whole surface of a cube is 96 sq. cm., then what is the length of diagonal of one surface in cm?", options: ["4√2", "4√3", "16√2", "16√3"], correct: 0, explanation: "6a² = 96 => a² = 16 => a = 4. Surface diagonal = a√2 = 4√2." },
+{ question: "25. A cube whose edge is 3 cm, what is the diagonal of it?", options: ["2√3", "3√2", "3√3", "9"], correct: 2, explanation: "Main diagonal = a√3 = 3√3." },
+{ question: "26. If the length of the diagonal of the surface of a cube is 8√2 cm. What is the length of its diagonal?", options: ["27.62", "13.86", "39.56", "56.34"], correct: 1, explanation: "a√2 = 8√2 => a = 8. Main diagonal = a√3 = 8√3 ≈ 13.86." },
+{ question: "27. What is the area of curved surface of cylinder of radius 3 cm and height 10 cm?", options: ["62.63 cm²", "94.25 cm²", "188.49 cm²", "376.99 cm²"], correct: 2, explanation: "CSA = 2πrh = 2π(3)(10) = 60π ≈ 188.49 cm²." },
+{ question: "28. In a cube length of a edge is √2 cm, then—\ni. Area of one surface is 12 cm²\nii. Volume is 2√2 cm³\niii. length of diagonal is √6 cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 2, explanation: "a = √2. i. Area of one surface = a² = 2 cm², not 12 ✗. ii. Volume = a³ = 2√2 ✓. iii. Diagonal = a√3 = √6 ✓. So ii & iii." },
+{ question: "29. The height of cylinder is 13 cm and its radius is 6 cm, then —\ni. the land of area is 113.10 square cm\nii. area of the whole surface is 490.09 sq cm\niii. volume is 1470.27 cubic cm\nWhich one is correct?", options: ["i & ii", "i & iii", "ii & iii", "i, ii & iii"], correct: 1, explanation: "Base = π(36) ≈ 113.1. TSA = 2π(6)(6+13) = 716.28. Volume = π(36)(13) ≈ 1470.27. Answer key says (b) i & iii." },
+{ question: "30. Area of curved surface area of a right circular cylinder is 100 cm² and its volume 150 cm³. What is the height (cm)?", options: ["3", "5", "7", "9"], correct: 1, explanation: "2πrh = 100 => πrh = 50. πr²h = 150 => r(50) = 150 => r = 3. Then π(3)h = 50 => h ≈ 5.3, so the nearest option is 5 cm." },
+{ question: "31. (Using the information of Q30: curved surface area = 100 cm², volume = 150 cm³.) Find radius (cm)", options: ["3", "5", "7", "9"], correct: 0, explanation: "Volume ÷ curved surface = πr²h ÷ 2πrh = r/2. So r/2 = 150/100 => r = 3 cm." },
+{ question: "32. (Figure: height 10 cm, diameter of base 14 cm.) Volume in cc of the cylinder is —", options: ["1539.38", "1439.39", "1339.39", "1239.38"], correct: 0, explanation: "r=7, h=10. V = πr²h = π(49)(10) = 490π ≈ 1539.38." },
+{ question: "33. The area of the whole surface in sq.cm is —", options: ["647.7", "747.7", "847.8", "947.8"], correct: 1, explanation: "TSA = 2πr(r+h) = 2π(7)(17) = 238π ≈ 747.7." },
+{ question: "34. The area of the curved surface in sq. cm is—", options: ["153.9", "439.8", "647.7", "947.8"], correct: 1, explanation: "CSA = 2πrh = 2π(7)(10) = 140π ≈ 439.8." },
+{ question: "35. ABCDEFGH is a cube. The volume of it is 64 cubic cm. What is the length of its diagonal?", options: ["4√3 cm", "4√2 cm", "4√5 cm", "4√6 cm"], correct: 0, explanation: "V=64 => a=4. Diagonal = a√3 = 4√3." },
+{ question: "36. What is the lateral area of it? [Cube volume 64]", options: ["36 sq.cm.", "48 sq.cm.", "69 sq.cm.", "96 sq.cm."], correct: 3, explanation: "V = 64 => a = 4. The book's key (d) 96 is the whole surface area 6a² = 6(16) = 96. (Strictly, the lateral area 4a² would be 64.)" },
+{ question: "37. What is the length of a diagonal of each surface? [Cube volume 64]", options: ["4√3 cm", "4√2 cm", "8 cm", "10 cm"], correct: 1, explanation: "a=4. Surface diagonal = a√2 = 4√2." },
+{ question: "38. How many faces does a solid object have?", options: ["2", "4", "6", "8"], correct: 2, explanation: "A standard solid (cube/cuboid) has 6 faces." },
+{ question: "39. What must be the height of a rectangular solid if its length, width, and diagonal length are 8, 6, and 12 units respectively?", options: ["2", "2√11", "44", "2√13"], correct: 1, explanation: "d² = l² + w² + h². 144 = 64 + 36 + h² => h² = 44 => h = 2√11." },
+{ question: "40. How many surfaces are there in a rectangular solid?", options: ["2", "3", "4", "6"], correct: 3, explanation: "6 surfaces." },
+{ question: "41. If dimensions of a box are 10, 5 and 4 cm. then what is the sum of the areas of the smallest surfaces?", options: ["40", "30", "20", "18"], correct: 0, explanation: "Smallest surfaces are 5x4. There are two of them. Sum = 2(20) = 40." },
+{ question: "42. If the length of a brick is 8 cm, width 5 cm. and height is 4 cm. what is the volume?", options: ["20", "160", "320", "460"], correct: 1, explanation: "V = l*b*h = 8*5*4 = 160." },
+{ question: "43. If the length of a box is 6 cm, width 5 cm. and volume is 90 cubic cm. what is the height (in cm)?", options: ["3", "4", "5", "6"], correct: 0, explanation: "V = l*w*h => 90 = 6*5*h => 30h = 90 => h = 3." },
+{ question: "44. What is the length of diagonal of a cube if the area of whole surface is 72 sq. unit?", options: ["12 unit", "6√3 unit", "6 unit", "3 unit"], correct: 2, explanation: "6a² = 72 => a² = 12 => a = 2√3. Main diagonal = a√3 = (2√3)(√3) = 6." },
+{ question: "45. For a rectangular solid, if the length is 3 cm, the breadth is 2cm and the height is 1 cm, what is the total surface area in cm²?", options: ["44", "22", "11", "6.5"], correct: 1, explanation: "TSA = 2(lb + bh + hl) = 2(6 + 2 + 3) = 2(11) = 22." },
+{ question: "46. The solid given below has —\ni. length of diagonal = 7.07 cm\nii. total surface area = 47 sq.cm\niii. volume = 60 cubic cm\nWhich of the following is correct?", options: ["i and ii", "i and iii", "ii and iii", "i, ii and iii"], correct: 1, explanation: "V = 5*4*3 = 60. TSA = 2(20+12+15) = 94. Diagonal = √(25+16+9) = √50 ≈ 7.07. Answer key says (b) i and iii." },
+{ question: "47. If the sum of the dimensions of a rectangular solid is 24 cm and the ratio between them is 3:2:1,\ni. height = 4 cm\nii. length = 12 cm\niii. diagonal = √14 cm\nWhich of the following is correct?", options: ["i and ii", "i and iii", "ii and iii", "i, ii and iii"], correct: 3, explanation: "Dimensions are 12, 8, 4. Sum = 24. Height=4, Length=12. Diagonal = √(144+64+16) = √224 = 4√14. Book key: (d) i, ii and iii. (The book prints the diagonal as √14; the true value is 4√14, so iii only holds with that correction.)" },
+{ question: "48. [Situation based] In the figure, a cube has vertices E, F, G, H on top and A, B, C, D on bottom. How many lines of symmetry does the surface EFGH have?", options: ["8", "4", "3", "2"], correct: 1, explanation: "A square has 4 lines of symmetry." },
+{ question: "49. What is the length of BH? [Cube with side 5cm]", options: ["4.47 cm (approx.)", "6.71 cm (approx.)", "7.07 cm (approx.)", "8.66 cm (approx.)"], correct: 3, explanation: "Main diagonal = a√3 = 5√3 ≈ 8.66." },
+{ question: "50. The dimensions of a rectangular solid are respectively 8 cm, 6 cm and 4 cm. What is the length of diagonal of the rectangular solid in cm?", options: ["2√29", "18", "14", "12"], correct: 0, explanation: "d = √(8² + 6² + 4²) = √(64+36+16) = √116 = 2√29." },
+{ question: "51. What is the total surface area of the rectangular solid (8, 6, 4) in cm²?", options: ["104", "192", "200", "208"], correct: 3, explanation: "TSA = 2(8*6 + 6*4 + 8*4) = 2(48 + 24 + 32) = 2(104) = 208." },
+{ question: "52. If the length of the diagonal of a cube is 7√3 meters, what is its volume in cubic meters?", options: ["216", "49", "343", "512"], correct: 2, explanation: "a√3 = 7√3 => a = 7. Volume = 7³ = 343." },
+{ question: "53. The volume of a cube is x³ + 3x² + 3x + 1 cubic units. What is the length of its edge?", options: ["x", "x + 1", "x - 1", "2x - 1"], correct: 1, explanation: "(x+1)³ = x³ + 3x² + 3x + 1. So edge = x+1." },
+{ question: "54. If the edge of a cube is a, the length of the diagonal of the cube?", options: ["a√3", "a√2", "6a²", "6a"], correct: 0, explanation: "Main diagonal of cube = a√3." },
+{ question: "55. A cube is formed by melting three cubes with the edges 3 cm, 4 cm, 5 cm. What is the length of edge of new cube?", options: ["5", "6", "10", "16"], correct: 1, explanation: "V1+V2+V3 = 27 + 64 + 125 = 216. New cube side = ³√216 = 6." },
+{ question: "56. The volume of a cube is x³ - 3x² + 3x - 1 cubic unit. What is the side of it?", options: ["x", "x + 1", "x - 1", "2x - 1"], correct: 2, explanation: "(x-1)³ = x³ - 3x² + 3x - 1. Side = x-1." },
+{ question: "57. A rectangular solid with equal length, breadth and height is called—", options: ["Cube", "Square", "Pyramid", "Cylinder"], correct: 0, explanation: "A cube has all equal sides." },
+{ question: "58. The length of diagonal of a cube is 6√3 m. What is the volume of the cube?", options: ["36 sq. m", "144 sq. m", "216 sq. m", "512 sq. m"], correct: 2, explanation: "a√3 = 6√3 => a = 6. V = a³ = 216." },
+{ question: "59. The area of a surface of a cube is 2400 sq. cm. What is the length of the diagonal of the cube in cm?", options: ["20", "20√2", "20√3", "400"], correct: 2, explanation: "Taking 2400 sq. cm as the whole surface: 6a² = 2400 => a² = 400 => a = 20. Diagonal = a√3 = 20√3 cm." },
+{ question: "60. If the length of the diagonal of a cube is 9√2 cm, then what is the volume of the cube?", options: ["54 cubic cm", "496.82 cubic cm", "396.82 cubic cm", "1089 cubic cm"], correct: 2, explanation: "a√3 = 9√2 => a = 9√(2/3) = 3√6. V = (3√6)³ = 162√6 ≈ 396.82." },
+{ question: "61. If the side of the cube is 3a then what is the length of the diagonal?", options: ["√3a", "√9a", "√3a²", "3√3a"], correct: 3, explanation: "Diagonal = side × √3 = 3a√3." },
+{ question: "62. If the diagonal of a cube is 6√3 cm. then what is the side?", options: ["4 cm.", "5 cm.", "6 cm.", "7 cm."], correct: 2, explanation: "a√3 = 6√3 => a = 6." },
+{ question: "63. The volume of a cube is 125x³ cubic units. What is its side?", options: ["25", "25x", "5", "5x"], correct: 3, explanation: "a³ = 125x³ => a = 5x." },
+{ question: "64. If the length of edge of a cube is 2 cm, what is the length of its diagonal?", options: ["√3 cm", "2√3 cm", "4√3 cm", "6√3 cm"], correct: 1, explanation: "Diagonal = a√3 = 2√3." },
+{ question: "65. If the length of edge of a cube is 1 cm, what is its total surface area?", options: ["36 sq.cm", "18 sq.cm", "12 sq.cm", "6 sq.cm"], correct: 3, explanation: "TSA = 6a² = 6(1)² = 6." },
+{ question: "66. If the length of edge of a cube is 4√3 units, what is the diagonal length?", options: ["12 units", "12√3 units", "36 units", "36√3 units"], correct: 0, explanation: "Diagonal = a√3 = 4√3 × √3 = 12." },
+{ question: "67. If a cube shaped tank has depth of 2 m, what is its volume in cubic meter?", options: ["4", "6", "8", "16"], correct: 2, explanation: "V = a³ = 2³ = 8." },
+{ question: "68. To create a wall having 5 cm breadth, 20 cm length and 10 cm height, how many bricks of 10 cm³ volume will be needed?", options: ["50", "100", "200", "500"], correct: 1, explanation: "Wall V = 5*20*10 = 1000 cm³. Bricks = 1000/10 = 100." },
+{ question: "69. The edges of 3 cubes are 3 cm, 4 cm, and 5 cm respectively. These 3 cubes are melted to form a new cube. What will be the length of edge of this cube?", options: ["5 cm", "6 cm", "10 cm", "16 cm"], correct: 1, explanation: "V = 27 + 64 + 125 = 216. Edge = ³√216 = 6." },
+{ question: "70. If the side of a cube is 3 cm, then—\ni. the area of the whole surface is 54 sq. cm.\nii. The diagonal of the cube is 3√3 cm.\niii. the volume is 81 cubic cm.\nWhich one of the following is correct?", options: ["i & ii", "ii & iii", "i & iii", "i, ii & iii"], correct: 0, explanation: "TSA=54, Diag=3√3, V=27 (not 81). So i & ii." },
+{ question: "71. If the length of edge of a cube is 2 m,\ni. its volume is 4 cubic meter\nii. four cubes of volume 1 cubic meter can be fit inside it\niii. 4 balls having 2 meter diameter can be fit inside it\nWhich of the following is correct?", options: ["i and ii", "i and iii", "ii and iii", "i, ii and iii"], correct: 0, explanation: "Volume = 2³ = 8 m³ (statement i prints 4, but the book's key treats it as 8). Eight 1 m³ cubes fit, so four certainly fit (ii true). Only one ball of 2 m diameter fits (iii false). Book key: (a) i and ii." },
+{ question: "72. The sum of the length of edges of a cube is 3/2 units. What is the length of each edge?", options: ["1 units", "1/2 units", "2 units", "3 units"], correct: 1, explanation: "Book key (b): the given 3/2 is treated as 3a (sum of the three dimensions), so a = 1/2 unit." },
+{ question: "73. What is the volume of the cube in cubic units?", options: ["3/2", "1/4", "1/8", "1/16"], correct: 2, explanation: "a = 1/2, so volume = a³ = 1/8." },
+{ question: "74. What is the total surface area of the cube?", options: ["3/2", "1/3", "6", "12"], correct: 0, explanation: "TSA = 6a² = 6 × (1/2)² = 6/4 = 3/2." },
+{ question: "75. If the volume of a cylinder is 100π cubic cm and its height is 5 cm, what is the radius of the base in cm?", options: ["5√5", "2√5", "4√5", "8√5"], correct: 1, explanation: "πr²h = 100π => r²(5) = 100 => r² = 20 => r = 2√5." },
+{ question: "76. (Figure: diameter of base 6 cm, height 10 cm.) What is the area of the curve surface in sq. cm in the above solid?", options: ["28.27 (app)", "56.55 (app)", "188.5 (app)", "282.7 (app)"], correct: 2, explanation: "Diameter = 6 => r = 3. CSA = 2πrh = 2π(3)(10) = 60π ≈ 188.5." },
+{ question: "77. The length of a diagonal of the surface of a cube is 5√2 cm, then the volume of the cube is-", options: ["68.04 cubic cm", "72.76 cubic cm", "125 cubic cm", "625 cubic cm"], correct: 2, explanation: "a√2 = 5√2 => a = 5. V = 5³ = 125. (The printed key shows (a), but 125 is option (c).)" },
+{ question: "78. If the radius of the base of a cylinder is 2 m and height is 2m, what is the area of the whole surface in sq. m?", options: ["12π", "16π", "20π", "21π"], correct: 1, explanation: "TSA = 2πr(r+h) = 2π(2)(2+2) = 16π." },
+{ question: "79. If a cylinder has the radius of base 2 meter and the length 1 meter then what is the total surface area?", options: ["12π sq. m", "8π sq. m", "9π sq. m", "6π sq. m"], correct: 0, explanation: "TSA = 2πr(r+h) = 2π(2)(2+1) = 12π." },
+{ question: "80. How many surface a cylinder has?", options: ["1", "2", "3", "4"], correct: 2, explanation: "2 flat circular bases + 1 curved surface = 3." },
+{ question: "81. A right circular cylinder has height 10 cm and base diameter of 14 cm. What is its volume in cm³?", options: ["49π", "98π", "390π", "490π"], correct: 3, explanation: "r=7, h=10. V = π(49)(10) = 490π." },
+{ question: "82. If the height of a right circular cylinder is h and the radius of the base is r, then—\ni. the area of the curved surface is 2πrh.\nii. the volume is πr²h.\niii. the area of the whole surface is πr (r + h).\nWhich one of the following is correct?", options: ["i & ii", "ii & iii", "i & iii", "i, ii & iii"], correct: 0, explanation: "i. CSA = 2πrh ✓. ii. Volume = πr²h ✓. iii. Whole surface = 2πr(r + h), not πr(r + h) ✗. So i & ii. (The printed key shows (d), which assumes iii is written 2πr(r + h).)" },
+{ question: "83. If the height of a right circular cylinder is 1 metre and the radius is 1 metre, then—\ni. the area of the curved surface is 6.2832 sq. m.\nii. the volume is 3.1416 cubic metre.\niii. the area of a base is 3.1416 metre\nWhich one of the following is correct?", options: ["i & ii", "ii & iii", "i & iii", "i, ii & iii"], correct: 3, explanation: "CSA=2π, V=π, Base=π. All are correct." },
+{ question: "84. If the slant height of a cone is 5 cm and the height is 4 cm —\ni. radius of cone is 3 cm\nii. base area of cone = 9π squared cm\niii. diameter of cone is 9 cm\nWhich of the following is correct?", options: ["i and ii", "i and iii", "ii and iii", "i, ii and iii"], correct: 0, explanation: "r = √(5² - 4²) = 3. Base area = 9π. Diameter = 6 (not 9). So i and ii." },
+{ question: "85. [Situation] In the given figure, The height of the cylinder = 10 cm and the radius of the base is 7 cm. What is the area of the whole surface in sq. cm?", options: ["647.7", "747.7", "847.8", "947.8"], correct: 1, explanation: "TSA = 2πr(r+h) = 2π(7)(17) = 238π ≈ 747.7." },
+{ question: "86. What is the area of the curved surface in sq. cm?", options: ["153.9", "439.8", "647.7", "947.8"], correct: 1, explanation: "CSA = 2πrh = 2π(7)(10) = 140π ≈ 439.8." },
+{ question: "87. A cylinder having height 2 cm has a base radius of 3 cm. What is the volume of the cylinder in cubic cm?", options: ["56.5487", "65.5487", "60.6487", "59.0438"], correct: 0, explanation: "V = π(9)(2) = 18π ≈ 56.5487." },
+{ question: "88. (Cylinder: height 2 cm, base radius 3 cm.) What is its curved surface area?", options: ["36.679 sq. cm", "36.997 sq. cm", "37.996 sq. cm", "37.699 sq. cm"], correct: 3, explanation: "CSA = 2π(3)(2) = 12π ≈ 37.699." },
+{ question: "89. (Cylinder: height 2 cm, base radius 3 cm.) If the total surface area is 94.248 square cm, what is the base area?", options: ["55.652 sq. cm", "28.274 sq. cm", "56.752 sq. cm", "56.962 sq. cm"], correct: 1, explanation: "TSA = 2πr(r+h) = 94.248. Given r=3, h=2, TSA = 30π = 94.248. Base Area = πr² = 9π ≈ 28.274." }
+];
+
+const ftxt=(x,y,s,a)=>`<text class='fig-txt' x='${x}' y='${y}' text-anchor='${a||'middle'}'>${s}</text>`;
+const fdim=(x,y,s,a)=>`<text class='fig-dimtxt' x='${x}' y='${y}' text-anchor='${a||'middle'}'>${s}</text>`;
+const fsvg=(w,h,b)=>`<svg viewBox='0 0 ${w} ${h}' width='${w}' role='img'>${b}</svg>`;
+const cubeBase=`<path class='fig-line' d='M30 60H130V160H30Z M30 60L70 20H170L130 60 M170 20V120L130 160'/><path class='fig-hid' d='M70 20V120H170 M70 120L30 160'/>`;
+const cylinder=(o)=>{
+ let s=`<ellipse class='fig-line' cx='120' cy='40' rx='60' ry='16'/><path class='fig-line' d='M60 40V150M180 40V150M60 150A60 16 0 0 0 180 150'/><path class='fig-hid' d='M60 150A60 16 0 0 1 180 150'/><path class='fig-dim' d='M205 40V150M200 40H210M200 150H210'/>`+fdim(214,100,o.h,'start');
+ if(o.abcd){ s+=`<path class='fig-line' d='M60 40H180'/><path class='fig-hid' d='M60 150H180'/>`+ftxt(52,36,'A','end')+ftxt(188,36,'D','start')+ftxt(52,166,'B','end')+ftxt(188,166,'C','start')+fdim(120,64,o.top); }
+ else if(o.dim==='d'){ s+=`<path class='fig-dim' d='M60 40H180M60 35V45M180 35V45'/>`+fdim(120,12,o.top); }
+ else { s+=`<path class='fig-dim' d='M120 40H180M180 35V45'/><circle cx='120' cy='40' r='2.5' fill='#4F46E5'/>`+fdim(150,12,o.top); }
+ return fsvg(310,180,s);
+};
+const figures={
+ cube: fsvg(200,180,cubeBase),
+ cylABCD: cylinder({abcd:1,top:'r = 5 cm',h:'h = 20 cm'}),
+ cyl14: cylinder({dim:'d',top:'d = 14 cm',h:'h = 10 cm'}),
+ cyl6: cylinder({dim:'d',top:'d = 6 cm',h:'h = 10 cm'}),
+ cyl7: cylinder({dim:'r',top:'r = 7 cm',h:'h = 10 cm'}),
+ cuboid: fsvg(300,170,`<path class='fig-line' d='M50 80H200V140H50Z M50 80L110 35H260L200 80 M260 35V95L200 140'/><path class='fig-hid' d='M110 35V95H260 M110 95L50 140'/>`+fdim(125,158,'5 cm')+fdim(44,115,'3 cm','end')+fdim(242,132,'4 cm','start')),
+ cubeEFGH: fsvg(240,205,`<path class='fig-line' d='M40 75H140V175H40Z M40 75L80 35H180L140 75 M180 35V135L140 175'/><path class='fig-hid' d='M80 35V135H180 M80 135L40 175'/><path class='fig-diag' d='M40 175L180 35'/>`+ftxt(74,30,'E','end')+ftxt(186,30,'H','start')+ftxt(34,72,'F','end')+ftxt(146,88,'G','start')+ftxt(34,190,'B','end')+ftxt(146,190,'C','start')+ftxt(74,148,'A','end')+ftxt(186,146,'D','start')+fdim(130,22,'5 cm')+fdim(30,128,'5 cm','end')+fdim(194,92,'5 cm','start'))
+};
+const figureMap={5:'cube',6:'cube',12:'cylABCD',13:'cylABCD',32:'cyl14',33:'cyl14',34:'cyl14',46:'cuboid',48:'cubeEFGH',49:'cubeEFGH',76:'cyl6',85:'cyl7',86:'cyl7'};
+quizData.forEach((q,i)=>{ if(figureMap[i+1]) q.figure=figureMap[i+1]; });
+
+let currentQuestionIndex = 0;
+let score = 0;
+let timerInterval;
+let timeLeft = 45;
+const TIME_PER_QUESTION = 45;
+let userAnswers = [];
+
+const startScreen = document.getElementById('start-screen');
+const quizScreen = document.getElementById('quiz-screen');
+const resultScreen = document.getElementById('result-screen');
+const questionText = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options-container');
+const nextBtn = document.getElementById('next-btn');
+const progressText = document.getElementById('progress-text');
+const timerDisplay = document.getElementById('timer-display');
+const timeText = document.getElementById('time-text');
+const figureBox = document.getElementById('figure-box');
+
+function startQuiz() {
+startScreen.classList.add('hidden');
+quizScreen.style.display = 'block';
+currentQuestionIndex = 0;
+score = 0;
+userAnswers = [];
+loadQuestion();
+}
+
+function loadQuestion() {
+clearInterval(timerInterval);
+timeLeft = TIME_PER_QUESTION;
+updateTimerDisplay();
+timerDisplay.classList.remove('warning');
+nextBtn.disabled = true;
+nextBtn.innerText = currentQuestionIndex === quizData.length - 1 ? "Finish Test" : "Next Question";
+const currentQuestion = quizData[currentQuestionIndex];
+progressText.innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}  ·  Total Marks: ${quizData.length}`;
+questionText.innerText = currentQuestion.question;
+figureBox.innerHTML = currentQuestion.figure ? figures[currentQuestion.figure] : '';
+optionsContainer.innerHTML = '';
+currentQuestion.options.forEach((option, index) => {
+const div = document.createElement('div');
+div.classList.add('option');
+div.innerText = `${String.fromCharCode(97 + index)}) ${option}`;
+div.onclick = () => selectOption(index, div);
+optionsContainer.appendChild(div);
+});
+startTimer();
+}
+
+function startTimer() {
+timerInterval = setInterval(() => {
+timeLeft--;
+updateTimerDisplay();
+if (timeLeft <= 10) { timerDisplay.classList.add('warning'); }
+if (timeLeft <= 0) { clearInterval(timerInterval); autoSubmit(); }
+}, 1000);
+}
+
+function updateTimerDisplay() { timeText.innerText = timeLeft; }
+
+function selectOption(selectedIndex, selectedDiv) {
+const options = optionsContainer.querySelectorAll('.option');
+options.forEach(opt => opt.classList.remove('selected'));
+selectedDiv.classList.add('selected');
+userAnswers[currentQuestionIndex] = selectedIndex;
+nextBtn.disabled = false;
+}
+
+function autoSubmit() {
+if (userAnswers[currentQuestionIndex] === undefined) { userAnswers[currentQuestionIndex] = -1; }
+nextQuestion();
+}
+
+function nextQuestion() {
+clearInterval(timerInterval);
+currentQuestionIndex++;
+if (currentQuestionIndex < quizData.length) { loadQuestion(); } else { showResults(); }
+}
+
+function showResults() {
+quizScreen.style.display = 'none';
+resultScreen.style.display = 'block';
+score = 0;
+quizData.forEach((q, index) => { if (userAnswers[index] === q.correct) { score++; } });
+document.getElementById('score-display').innerText = `${score}/${quizData.length}`;
+const total = quizData.length;
+const unanswered = quizData.filter((q, i) => userAnswers[i] === undefined || userAnswers[i] === -1).length;
+const wrong = total - score - unanswered;
+document.getElementById('summary').innerHTML = `<div><b>${score} / ${total}</b>Total Marks Obtained</div><div><b>${((score / total) * 100).toFixed(1)}%</b>Percentage</div><div><b>${score}</b>Correct (+1 each)</div><div><b>${wrong}</b>Wrong (0 marks)</div><div><b>${unanswered}</b>Unanswered / timed out</div><div><b>${total}</b>Full Marks</div>`;
+const reviewContainer = document.getElementById('review-container');
+reviewContainer.innerHTML = '<h3>Detailed Review</h3>';
+quizData.forEach((q, index) => {
+const userAnsIndex = userAnswers[index];
+const isCorrect = userAnsIndex === q.correct;
+const reviewItem = document.createElement('div');
+reviewItem.classList.add('review-item');
+let userAnsText = userAnsIndex === -1 ? "Not Answered (Time out)" : q.options[userAnsIndex];
+let correctAnsText = q.options[q.correct];
+let html = `
+<div class="review-question">${q.question}</div>${q.figure ? '<div class="figure-box">' + figures[q.figure] + '</div>' : ''}
+<div class="review-answer ${isCorrect ? 'user-correct' : 'user-wrong'}">
+Your Answer: ${userAnsText} ${isCorrect ? '✓' : '✗'}
+</div>
+`;
+if (!isCorrect) { html += `<div class="review-answer correct-ans">Correct Answer: ${correctAnsText}</div>`; }
+html += `<div class="explanation"><strong>Explanation:</strong> ${q.explanation}</div>`;
+reviewItem.innerHTML = html;
+reviewContainer.appendChild(reviewItem);
+});
+}
+</script>
+</body>
+</html>
